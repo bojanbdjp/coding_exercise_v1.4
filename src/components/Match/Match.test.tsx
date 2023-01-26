@@ -20,6 +20,12 @@ it('should have Serbia as a first home team', () => {
 
 it('home team should have initial score 0', () => {
     render(<Match match={mockData[0]}/>);
-    const startButton = screen.getAllByText(/0/i);
+    const intialScore = screen.getAllByText(/0/i);
+    expect(intialScore[0]).toBeInTheDocument();
+});
+
+it('should have a start button', () => {
+    render(<Match match={mockData[0]}/>);
+    const startButton = screen.getAllByRole('button', {name: /Start/i});
     expect(startButton[0]).toBeInTheDocument();
 });

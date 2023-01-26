@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { MatchType } from '../../data'
 
 
@@ -7,6 +7,9 @@ type Props = {
 }
 
 function Match({match}: Props) {
+
+    const [status, setStatus] = useState(match.isStarted);
+
     return (
         <div>
             <div>
@@ -17,6 +20,13 @@ function Match({match}: Props) {
                 <p>{match.homeScore}</p>
                 <p>{match.awayScore}</p>
             </div>
+
+            {status === false 
+            ?   <div>
+                    <button>Start</button>
+                </div> 
+            : <></>
+            }
     </div>
     )
 }
