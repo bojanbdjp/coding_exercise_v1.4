@@ -18,6 +18,11 @@ function Match({match}: Props) {
         setStatus(true);
     }
 
+    const updateScore = () => {
+        setHomeScore(+homeScoreRef.current!.value)
+        setAwayScore(+awayScoreRef.current!.value)
+    }
+
 
     return (
         <div>
@@ -37,7 +42,7 @@ function Match({match}: Props) {
             : <div>
                     <input type='number' ref={homeScoreRef} placeholder='home'></input>
                     <input type='number' ref={awayScoreRef} placeholder='away'></input>
-                    <button>Update score</button>
+                    <button onClick={updateScore}>Update score</button>
                     <button>Finish game</button>
                 </div>}
     </div>
