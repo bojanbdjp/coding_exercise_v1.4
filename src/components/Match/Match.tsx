@@ -9,8 +9,14 @@ type Props = {
 function Match({match}: Props) {
     return (
         <div>
-            <p>{match.homeTeam}</p>
-            <p>{match.awayTeam}</p>
+            <div>
+                <p>{match.homeTeam}</p>
+                <p>{match.awayTeam}</p>
+            </div>
+            <div>
+                <p>{match.homeScore}</p>
+                <p>{match.awayScore}</p>
+            </div>
     </div>
     )
 }
