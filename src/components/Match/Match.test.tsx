@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 import Match from './Match';
 
 const mockData = [
@@ -28,4 +28,12 @@ it('should have a start button', () => {
     render(<Match match={mockData[0]}/>);
     const startButton = screen.getAllByRole('button', {name: /Start/i});
     expect(startButton[0]).toBeInTheDocument();
+});
+
+it('should show the update score button when start button is clicked', () => {
+    render(<Match match={mockData[0]}/>);
+    const startButton = screen.getAllByRole('button', {name: /Start/i});
+    fireEvent.click(startButton[0])
+    const updateButton = screen.getAllByRole('button', {name: /Update score/i});
+    expect(updateButton[0]).toBeInTheDocument();
 });
