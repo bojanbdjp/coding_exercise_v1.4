@@ -12,26 +12,28 @@ const mockData = [
     }
 ]
 
+const mockUpdateFunction = jest.fn();
+
 it('should have Serbia as a first home team', () => {
-    render(<Match match={mockData[0]}/>);
+    render(<Match match={mockData[0]} updateFunction={mockUpdateFunction}/>);
     const homeTeam = screen.getByText(/Serbia/i);
     expect(homeTeam).toBeInTheDocument();
 });
 
 it('home team should have initial score 0', () => {
-    render(<Match match={mockData[0]}/>);
+    render(<Match match={mockData[0]} updateFunction={mockUpdateFunction}/>);
     const intialScore = screen.getAllByText(/0/i);
     expect(intialScore[0]).toBeInTheDocument();
 });
 
 it('should have a start button', () => {
-    render(<Match match={mockData[0]}/>);
+    render(<Match match={mockData[0]} updateFunction={mockUpdateFunction}/>);
     const startButton = screen.getAllByRole('button', {name: /Start/i});
     expect(startButton[0]).toBeInTheDocument();
 });
 
 it('should show the update score button when start button is clicked', () => {
-    render(<Match match={mockData[0]}/>);
+    render(<Match match={mockData[0]} updateFunction={mockUpdateFunction}/>);
     const startButton = screen.getAllByRole('button', {name: /Start/i});
     fireEvent.click(startButton[0])
     const updateButton = screen.getAllByRole('button', {name: /Update score/i});
@@ -39,7 +41,7 @@ it('should show the update score button when start button is clicked', () => {
 });
 
 it('should update results when the update score button is clicked', () => {
-    render(<Match match={mockData[0]}/>);
+    render(<Match match={mockData[0]} updateFunction={mockUpdateFunction}/>);
     const startButton = screen.getAllByRole('button', {name: /Start/i});
     fireEvent.click(startButton[0])
 

@@ -3,10 +3,11 @@ import { MatchType } from '../../data'
 
 
 type Props = {
-    match: MatchType
+    match: MatchType,
+    updateFunction: (match:MatchType) => void
 }
 
-function Match({match}: Props) {
+function Match({match, updateFunction}: Props) {
 
     const [status, setStatus] = useState(match.isStarted);
     const [homeScore, setHomeScore] = useState(match.homeScore)
@@ -23,30 +24,37 @@ function Match({match}: Props) {
         setAwayScore(+awayScoreRef.current!.value)
     }
 
+    const finishMatch = () => {
+        updateFunction({homeTeam: match.homeTeam, homeScore, awayScore}) 
+    }
 
-    return (
-        <div>
+    if(match.isFinished !== true) {
+        return (
             <div>
-                <p>{match.homeTeam}</p>
-                <p>{match.awayTeam}</p>
-            </div>
-            <div>
-                <p>{homeScore}</p>
-                <p>{awayScore}</p>
-            </div>
+                <div>
+                    <p>{match.homeTeam}</p>
+                    <p>{match.awayTeam}</p>
+                </div>
+                <div>
+                    <p>{homeScore}</p>
+                    <p>{awayScore}</p>
+                </div>
 
-            {status === false 
-            ?   <div>
-                    <button onClick={startGame}>Start</button>
-                </div> 
-            : <div>
-                    <input type='number' ref={homeScoreRef} placeholder='home'></input>
-                    <input type='number' ref={awayScoreRef} placeholder='away'></input>
-                    <button onClick={updateScore}>Update score</button>
-                    <button>Finish game</button>
-                </div>}
-    </div>
-    )
+                {status === false 
+                ?   <div>
+                        <button onClick={startGame}>Start</button>
+                    </div> 
+                : <div>
+                        <input type='number' ref={homeScoreRef} placeholder='home'></input>
+                        <input type='number' ref={awayScoreRef} placeholder='away'></input>
+                        <button onClick={updateScore}>Update score</button>
+                        <button onClick={finishMatch}>Finish game</button>
+                    </div>}
+        </div>
+        )
+    } else {
+        return <></>
+    }    
 }
 
 export default Match
