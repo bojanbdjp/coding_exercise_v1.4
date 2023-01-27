@@ -1,0 +1,13 @@
+.matchRow{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.matchRow div {
+    width: 25%;
+}
+
+.matchRow div > input {
+    width: 20%;
+}

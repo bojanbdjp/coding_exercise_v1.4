@@ -1,6 +1,6 @@
 import React, { useRef, useState } from 'react'
 import { MatchType } from '../../data'
-
+import './Match.css'
 
 type Props = {
     match: MatchType,
@@ -30,7 +30,7 @@ function Match({match, updateFunction}: Props) {
 
     if(match.isFinished !== true) {
         return (
-            <div>
+            <div className='matchRow'>
                 <div>
                     <p>{match.homeTeam}</p>
                     <p>{match.awayTeam}</p>

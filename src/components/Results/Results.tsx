@@ -24,9 +24,9 @@ function Results({matchList}: Props) {
     })
 
     return (
-        <div>
+        <div style={{display:'flex', alignItems:'center', flexDirection:'column'}}>
             <button onClick={showResults}>Show results</button>
-            <ol>
+            <ol style={{width: '20%'}}>
                 {isResultsListShown && sortedResultsList}
             </ol>
         </div>
