@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './App.css';
 import MatchList from './components/MatchList/MatchList';
+import Results from './components/Results/Results';
 import {matchList, MatchType} from './data'
 
 
@@ -18,6 +19,7 @@ function App() {
     <div className="App">
       <h1>Football World Cup live score board</h1>
       <MatchList matchList={matches} updateFunction={updateMatcheList}/>
+      <Results matchList={matches} />
     </div>
   );
 }
