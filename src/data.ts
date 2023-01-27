@@ -1,4 +1,5 @@
 export type MatchType = {
+    added?: number
     homeTeam: string,
     awayTeam?: string,
     homeScore: number,

@@ -72,3 +72,37 @@ it('should render Spain 3:3 Brazil match before Mexico 5:0 Canada', () => {
   expect(resultsList[1]).toHaveTextContent(/Mexico 5/i)
 
 });
+
+
+
+it('should render recently added team first if total score is the same', () => {
+  render(<App />);
+  // Update Mexico-Canada score to 2:4
+  const startButton = screen.getAllByRole('button', {name: /Start/i});
+  fireEvent.click(startButton[0]);
+  const inputHome = screen.getAllByPlaceholderText('home');
+  fireEvent.change(inputHome[0], {target: {value: 5}})
+  const updateButton = screen.getAllByRole('button', {name: /Update score/i});
+  fireEvent.click(updateButton[0])
+  const finishButton = screen.getAllByRole('button', {name: /Finish game/i});
+  fireEvent.click(finishButton[0]);
+
+  // Update Spain-Brazil score to 3:3
+  const startButton2 = screen.getAllByRole('button', {name: /Start/i});
+  fireEvent.click(startButton2[0]);
+  const inputHome2 = screen.getAllByPlaceholderText('home');
+  fireEvent.change(inputHome2[0], {target: {value: 3}})
+  const inputAway = screen.getAllByPlaceholderText('away');
+  fireEvent.change(inputAway[0], {target: {value: 3}})
+  const updateButton2 = screen.getAllByRole('button', {name: /Update score/i});
+  fireEvent.click(updateButton2[0])
+  const finishButton2 = screen.getAllByRole('button', {name: /Finish game/i});
+  fireEvent.click(finishButton2[0]);
+
+  const showResults = screen.getAllByRole('button', {name: /Show results/i});
+  fireEvent.click(showResults[0]);
+  const resultsList = screen.getAllByRole('listitem')
+  expect(resultsList[0]).toHaveTextContent(/Spain 3/i)
+  expect(resultsList[1]).toHaveTextContent(/Mexico 5/i)
+
+});
